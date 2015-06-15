@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<head>
+    <title></title>
+
+    <link href="bootstrap.css" rel="stylesheet" />
+    <script src="bootstrap.js"></script>
+</head>
+
+<html>
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="/Admin/index2" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin </b>Panel</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>    
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+           
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            
+            <!-- Main content -->
+            <section class="content">
+                <!-- Small boxes (Stat box) -->
+                <div class="row" style="margin-top:10em">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        </div>
+                    <div class="col-lg-3 col-xs-6">
+
+                        <form method="post" action="/Admin/Panel">
+                            <p style="font-size:20px; font-weight:bold">Log In to Proceed..</p><br />
+
+                            <input type="email" style="width:230px;height:30px" name="email" placeholder="User Name"  required/><br /><br />
+                            <input type="password" style="width:230px;height:30px" name="password" placeholder="Password" required /><br /><br />
+                            <input type="submit" value="Sign In" style="background-color:#a4e9f6; font-family: Calibri; font-weight: bold; border-color:#106778" />
+
+                        </form>
+                    </div>
+                    </div>
+
+             </section>
+        </div>
+   
+    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="#">BestSellers</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class='control-sidebar-bg'></div>
+    </div><!-- ./wrapper -->
+   
+</body>
+</html>

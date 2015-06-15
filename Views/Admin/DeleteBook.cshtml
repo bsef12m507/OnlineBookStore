@@ -1,0 +1,119 @@
+﻿@model onlineBookStore.Models.Book
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+
+
+</head>
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("~/Views/Shared/_AdminSideBar.cshtml")
+       
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                    <small>Control panel</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/LogOut"><i class="fa fa-dashboard"></i>Log Out</a></li>
+                    <li><a href="/Admin/Panel"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+
+           
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-2" style="visibility:hidden">
+                    </div>
+                    <div class="col-md-8">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <div class="box-header">
+
+                            <h1>Delete Book</h1>
+                            </div><!-- /.box-header -->
+                            <!-- form start -->
+                            <form role="form" style="padding-left:4em;padding-left:4em;padding-right:4em;padding-bottom:4em" method="post" action="/Admin/DeleteBookInDB">
+
+                                <div class="box-body">
+
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        string str = Model.bookId + i.ToString() + ".jpg";
+                                        <div class="col-sm-2 pull-left">
+                                            <img src="~/Files/@str" alt="" style="width:80%" /><br />
+                                        </div>
+                                    }
+
+                                    <input style="visibility:hidden" type="text" name="image" value=@Model.image />
+                                    <input style="visibility:hidden" type="number" name="bookId" value=@Model.bookId />
+
+                                    <div class="form-group">
+                                        <br />
+                                        <br />
+                                        <label for="exampleInputName">Book Name</label>
+                                        <input type="text" class="form-control" name="name" value=@Model.name readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAuthor">Author Name</label>
+                                        <input type="text" class="form-control" name="Author" value=@Model.Author readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAuthor">Standard</label>
+                                        <input type="text" class="form-control" name="class" value=@Model.Class readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAuthor">Category</label>
+                                        <input type="text" class="form-control" name="category" value=@Model.Category1.name readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAuthor">Description</label>
+                                        <input type="text" class="form-control" name="description" value=@Model.description readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAuthor">Unit Price</label>
+                                        <input type="number" class="form-control" name="unitPrice" value=@Model.unitPrice readonly>
+                                    </div>
+                                   
+                                    <br />
+
+                                    <input type="submit" value="Delete Book" />
+                                </div><!-- /.box-body -->
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+  
+        </div>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="#">BestSellers</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+        <div class='control-sidebar-bg'></div>
+    </div><!-- ./wrapper -->
+    
+</body>
+
+</html>

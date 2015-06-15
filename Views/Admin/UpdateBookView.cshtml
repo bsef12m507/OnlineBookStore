@@ -1,0 +1,152 @@
+﻿@model onlineBookStore.Models.Book
+
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title></title>
+   
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+
+
+</head>
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("~/Views/Shared/_AdminSideBar.cshtml")
+        
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                    <small>Control panel</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/LogOut"><i class="fa fa-dashboard"></i>Log Out</a></li>
+                    <li><a href="/Admin/Panel"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-2" style="visibility:hidden">
+                        </div>
+                        <!-- left column -->
+                        <div class="col-md-8">
+                            <!-- general form elements -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h1>Update Book</h1>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+
+                                <form role="form" style="padding-left:4em;padding-left:4em;padding-right:4em;padding-bottom:4em" method="post" action="/Admin/UpdateBookInDB" enctype="multipart/form-data">
+
+                                    <div class="box-body">
+
+                                        <div class="img-responsive">
+
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                string str = Model.bookId.ToString() + i.ToString() + ".jpg";
+                                                
+                                                <div class="col-sm-2 pull-left">
+                                                    <img src="~/Files/@str" alt="" style="width:80%" /><br />
+                                                </div>
+                                            }
+
+                                        </div>
+                                        <input style="visibility:hidden" type="text" name="image" value=@Model.image />
+                                        <input style="visibility:hidden" type="number" name="bookId" value=@Model.bookId />
+                                   
+                                        <div class="form-group">
+                                            <br />
+                                            <br />
+                                            <label for="exampleInputName">Book Name</label>
+                                            <input type="text" class="form-control thumbnail" name="name" value="@Model.name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputAuthor">Author Name</label><br />
+                                            <select name="Author" class="thumbnail">
+
+                                                <option>@Model.Author</option>
+                                                @foreach (var o in ViewBag.Authors)
+                                                {
+                                                    <option>@o.name</option>
+                                                }
+
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputAuthor">Standard</label><br />
+                                            <select name="Class" class="thumbnail">
+                                                <option>@Model.Class</option>
+                                                <option>BSC</option>
+                                                <option>BS(Hons)</option>
+                                                <option>M-Phill</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="exampleInputAuthor">Category</label><br />
+                                            <select name="cat">
+                                                <option>@Model.Category1.name</option>
+                                                @foreach (var o in ViewBag.cat)
+                                                {
+                                                    <option>@o.name</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputAuthor">Description</label>
+                                            <input type="text" class="form-control thumbnail" name="description" value="@Model.description">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputAuthor">Unit Price</label>
+                                            <input type="number" class="form-control thumbnail" name="unitPrice" value="@Model.unitPrice">
+                                        </div>
+                                        <div class="form-group">
+                                            <br /><label for="exampleInputFile">Update Book Image(s)</label>
+                                            <input class="thumbnail" type="file" name="file" multiple>
+                                        </div>
+
+                                        <br />
+
+                                        <input class="btn btn-primary" type="submit" value="Update Book" />
+                                    </div><!-- /.box-body -->
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </div>
+        <!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="#">BestSellers</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+        <div class='control-sidebar-bg'></div>
+    </div><!-- ./wrapper -->
+   
+</body>
+</html>

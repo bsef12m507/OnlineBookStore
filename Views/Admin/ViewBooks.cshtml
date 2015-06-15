@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Admin| Dashboard</title>
+    
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+</head>
+
+
+<body class="skin-blue sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("~/Views/Shared/_AdminSideBar.cshtml")
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content-header">
+                <h1>
+                    Dashboard
+                    <small>Control panel</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/Home/LogOut"><i class="fa fa-dashboard"></i> Log Out</a></li>
+                    <li><a href="/Admin/Panel"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </section>
+
+            <section class="content">
+                <h3 style="color: #5f133f; font-family: Castellar; font-weight: bolder; padding-left: 4em">Book Details</h3>
+
+                <div class="row">
+                        <div class="img-responsive col-sm-3">
+                            <img src="~/Content/images/image01.jpg" alt="" style="width:200px"/><br /><br />
+                            <span> Book Name</span><br />
+                            <span> Version</span><br />
+                            <span> Author Name</span><br />
+                            <span> Category</span><br />
+                            <span> Class</span><br />
+                            <span> Description</span><br />
+                        </div>
+                </div>
+               </section>
+            </div>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.0
+                </div>
+                <strong>Copyright &copy; 2014-2015 <a href="#">BestSellers</a>.</strong> All rights reserved.
+            </footer>
+
+            <!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+            <div class='control-sidebar-bg'></div>
+        </div><!-- ./wrapper -->
+                        
+</body>
+</html>

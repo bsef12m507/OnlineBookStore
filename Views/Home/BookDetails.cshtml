@@ -1,0 +1,157 @@
+﻿@model onlineBookStore.Models.Book
+@{
+    ViewBag.Title = "BookDetails";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+
+    <style>
+        .book-name {
+            font-size: 12px;
+            line-height: 13px;
+            color: #5f133f;
+            font-family: 'Georgia', Arial, serif;
+            display: block;
+        }
+    </style>
+</head>
+    
+<body>
+        
+    
+    <div class="container">
+
+            <div class="row" style="background-color: #ffffff;padding-top:3em; padding-bottom: 3em">
+
+                <div class="categories col-sm-4">
+                    <h4 style="color: #5f133f; font-family: Castellar;font-weight:bolder;border-bottom:inset;padding-top:2em">Select Required Standard</h4><br /><br />
+                    <ul>
+                        <li>
+
+
+                            <h2 style="color: #5f133f; font-family: Castellar;font-weight:bolder">Categories</h2>
+
+                            <ul style="color: #5f133f; font-family:Calibri; font-weight: bold;margin-bottom:4em">
+                                @foreach (var u in ViewBag.cat)
+                                {
+
+                                    <li style="border-bottom:solid;font-size:20px">@Html.ActionLink((string)@u.name, "/BscCat", new { cat = u.name, cla = ViewBag.cla })</li>
+                                }
+                            </ul>
+
+                        </li>
+                        <li style="display:inline;margin-left:2em">
+                            <img src="~/Content/themes/base/images/image18.jpg" alt="" />
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                @*<div class="imag-responsive col-sm-8 pull-right" style="padding-top:2em">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>
+                        <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li>
+                        <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li>
+                        <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>
+                    </ul>
+                </div>*@
+
+                @if (ViewBag.dis == 1)
+                {
+                    <div id="d2" class="imag-responsive col-sm-8 pull-right" style="padding-top:2em">
+                        <ul id="classSelector" class="nav nav-tabs" role="tablist">
+                            @if (ViewBag.cla.Equals("Top Most"))
+                            {
+                            <li class="active"><a href="/Home/Index">Top Most</a></li>}
+                            @*else {<li><a href="/Home/Index">Top Most</a></li> }*@
+                            @if (ViewBag.cla.Equals("BSC"))
+                            {
+                            <li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}
+                            else
+                            {
+                            <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}
+                            @if (ViewBag.cla.Equals("BS(Hons)"))
+                            {
+                            <li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li>}
+                            else
+                            {
+                            <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li> }
+                            @if (ViewBag.cla.Equals("M-Phill"))
+                            {
+                            <li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li>}
+                            else
+                            {
+                            <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li> }
+                            @if (ViewBag.cla.Equals("Others"))
+                            {
+                            <li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+                            else
+                            {
+                            <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+                        </ul>
+                    </div>
+
+
+                }
+
+                <div class="col-sm-2" style="visibility:hidden">
+
+                </div>
+
+                <div class="product col-sm-4" style="padding-top: 2em; margin-left: 3em">
+                   @if(ViewBag.temp!=1)
+                   { 
+                    <form action="/Home/AddToCart" enctype="multipart/form-data">
+                        <input name="bookId" value="@Model.bookId" hidden />
+                        <input name="Author" value="@Model.Author" hidden />
+                        <input name="name" value="@Model.name" hidden />
+                        <input name="category" value="@Model.category" hidden />
+                        <input name="Class" value="@Model.Class" hidden />
+                        <input name="description" value="@Model.description" hidden />
+                        <input name="unitPrice" value="@Model.unitPrice" hidden />
+                        <input name="quantity" value="@Model.quantity" hidden />
+                        <input name="image" value="@Model.image" hidden /> <br />
+                        <div class="glyphicon glyphicon-shopping-cart thumbnail">
+
+                            Quantity: <input type="number" min="1" max="2000" name="value" required />
+                            <input type="Submit" value="AddToCart" />
+
+                        </div>
+                    </form>
+                   }
+
+                </div>
+
+                <div class="col-sm-2" style="visibility:hidden">
+
+                </div>
+
+                <div class="product col-sm-4 thumbnail" style="margin-left:3em;padding-top:2em">
+                    <h3 style="color: #5f133f; font-family: Castellar; font-weight: bolder; padding-left: 2em">Book Details</h3>
+
+                    <div style="padding-top:2em;padding-left:3em;position:static;font-weight:bold;font-size:16px">
+                        @{string s = @Model.bookId + "0.jpg";
+                        <img  src="~/Files/@s" alt="" style="width:50%" class="thumbnail" />
+                        }
+                        <span class="book-name thumbnail col-sm-8">@Model.name</span><br />
+                        <span class="book-name thumbnail col-sm-8">By: @Model.Author</span><br />
+                        <span class="book-name thumbnail col-sm-8">Rs. @Model.unitPrice</span><br />                    
+                        <span class="book-name thumbnail col-sm-8">Description: @Model.description</span><br />
+                    </div>
+                </div>
+
+
+                
+            </div>
+
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model onlineBookStore.Models.User
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+    
+</head>
+<body>
+
+    
+    <div class="container">
+
+        <div class="row" style="margin-bottom: 1em; background-color: #ffffff; padding-bottom: 5em; padding-top: 5em">
+          
+            <form style="padding:3em" method="post" action="/Home/LogIn">   
+                <fieldset>           
+                    <p class ="col-sm-5" style="font-size: 25px; padding-top: -3em; color: #5f133f; font-family: Castellar; font-weight: bolder; padding-left: 3em">Have an Account?</p>
+                    <div class="col-sm-7 pull-right" style="font-size: 18px; font-family: Castellar;font-variant-caps:all-small-caps;font-weight:bold">
+
+                        <input type="email" style="width:230px;height:40px" name="email" placeholder="User Name" required/>
+                        <input type="password" style="width:230px;height:40px" name="password" placeholder="Password" />
+                        <input class="btn btn-social" type="submit" value="Sign In" style="font-family: Calibri; font-weight: bold; border-color: #816f0c; background-color: #f8eca6" required />
+
+                    </div>
+                </fieldset> 
+            </form>
+        
+            <div id="my" class="text-center header">
+                <p style="font-size:larger;color:deepskyblue">@ViewBag.Message</p><br />
+            </div>
+            <hr style="border-width: thick; "/>
+
+            <div class="col-sm-2" style="font-size: 18px; border-color: #816f0c; font-family: Castellar;font-weight:bold;visibility:hidden">
+            <h1>Hidden div</h1>    
+            </div>
+            
+                <div class="col-sm-8" style="font-size: 18px; border-color: #816f0c; font-family: Castellar;font-weight:bold">
+                    <br />
+                    
+                    <p class="text-center header thumbnail" style="font-size: 20px; color: #4f2008;  border-color: #816f0c; font-family: Castellar;padding:1em;font-weight:bolder">New Customer?</p>
+                    <fieldset class="thumbnail" style="border-color: #816f0c;background-color: #ffffff">
+
+                       @*@using ( @Html.BeginForm("SignUp","Home",FormMethod.Post))
+                        {
+                            
+                            @Html.ValidationSummary(true)
+                           <br />
+                            
+                            @Html.LabelFor(m =>m.fname)<br />
+                            @Html.TextBoxFor(m => m.fname) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.fname)<br />
+                           
+                            @Html.LabelFor(m =>m.lname)<br />
+                            @Html.TextBoxFor(m => m.lname) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.lname)<br />
+                           
+                            @Html.LabelFor(m =>m.email)<br />
+                            @Html.TextBoxFor(m => m.email) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.email)<br />
+
+                            
+                            @Html.LabelFor(m => m.password)<br />
+                            @Html.TextBoxFor(m => m.password)<br /><br />
+                            @Html.ValidationMessageFor(m=>m.password)<br />
+
+                            @Html.LabelFor(m => m.pass)<br />
+                            @Html.TextBoxFor(m => m.pass)<br /><br />
+                            @Html.ValidationMessageFor(m=>m.pass)<br />
+                           
+                            @Html.LabelFor(m =>m.Street)<br />
+                            @Html.TextBoxFor(m => m.Street) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.Street)<br />
+
+                            @Html.LabelFor(m =>m.Town)<br />
+                            @Html.TextBoxFor(m => m.Town) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.Town)<br />
+                           
+                           
+                            @Html.LabelFor(m =>m.City)<br />
+                            @Html.TextBoxFor(m => m.City) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.City)<br />
+                           
+                            @Html.LabelFor(m =>m.Country)<br />
+                            @Html.TextBoxFor(m => m.Country) <br /><br />
+                            @Html.ValidationMessageFor(m=>m.Country)<br />
+
+                            <input class="btn btn-default" type="submit" value="Sign Up" /><br /><br />
+                        }*@
+
+                        @*@Scripts.Render("~/bundles/jquery")
+                        @Scripts.Render("~/bundles/jqueryval")
+                        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+                        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+
+                        <form style="margin-top:1em;padding-left:4em" method="post" action=" /Home/SignUp">
+                            <br />
+                            <input class="form-control" type="text" style="width:80%" height="40" placeholder="First Name" name="fname" required /><br />
+                            <input class="form-control" type="text" style="width: 80%" height="40" placeholder="Last Name" name="lname" required /><br />
+                            <div class="form-group">
+                                <input class="form-control" type="email" style="width: 60%; float: left; margin-right: 2em" height="40" placeholder="Email( User Name )" name="email" id="a" required />
+                                <input class="btn btn-default" id="b1" value="Check" style="font-family: Calibri;border-color: #816f0c; background-color: #f8eca6;font-size:medium;width:15%" /><br />
+                                <div id="divStatus" /><br /><br />
+                            </div>
+                                
+                            
+
+                            <input class="form-control" type="password" style="width: 80%" height="40" placeholder="Password" name="password" required /><br />
+                            <input class="form-control" type="password" style="width: 80%" height="40" placeholder="Confirm Password" name="pass" required /><br />
+                            <div class="form-group">
+                                <input class="form-control " type="number" style="width: 30%; float: left; margin-right: 2em" height="40" placeholder="Street #" name="Street" required />
+                                <input class="form-control input-group-lg" type="text" style="width: 45%" height="40" placeholder="Town Name" name="Town" required />
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input class="form-control" type="text" style="width: 30%; float: left; margin-right: 2em" height="40" placeholder="City Name" name="City" required />
+                                <input class="form-control" type="text" style="width: 45%" height="40" placeholder="Country Name" name="Country" required /><br />
+                            </div>
+                            <input id="b2" class="btn btn-default" type="submit" value="Sign Up" style="font-family: Calibri; font-weight: bold;border-color: #816f0c; background-color: #f8eca6;font-size:22px" /><br /><br />
+
+                        </form>
+
+                    </fieldset>
+
+                </div>
+
+            </div>
+     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            $("#b1").click(function () {
+                var name = $("#a").val(); //Value entered in the text box
+                var status = $("#divStatus"); //DIV object to display the status message
+                status.html("Checking....") //While our Thread works, we will show some message to indicate the progress
+
+                //jQuery AJAX Post request
+                $.post("/Home/CheckUserName", { email: name },
+                    function (data) {
+                        if (data == true) {
+                            status.html("Available..!");
+                        } else {
+                            status.html("Not Available..!");
+                        }
+                    });
+            });
+        });
+
+
+    </script>
+
+
+
+
+</body>
+</html>

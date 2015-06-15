@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "SearchView";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="row" style="margin-bottom: 1em; background-color:#ffffff;padding-top:5em;padding-bottom:5em">
+
+            <form method="post" action="/Home/LogIn">
+                <div class="col-sm-4" style="font-size: 18px; color: #6b36f2; border-color: #816f0c; font-family: Castellar; font-weight: bold">
+                    <p>Have an Account?</p>
+
+                </div>
+                <div class="col-sm-8 pull-right" style="font-size: 18px; border-color: #816f0c; font-family: Castellar;font-variant-caps:all-small-caps;font-weight:bold">
+
+                    <input type="email" style="width:230px;height:30px" name="email" placeholder="User Name" />
+                    <input type="password" style="width:230px;height:30px" name="password" placeholder="Password" />
+                    <input type="submit" value="Sign In" style="background-color:#a4e9f6; font-family: Calibri; font-weight: bold; border-color:#106778" />
+
+                </div>
+            </form>
+
+
+            <form style="margin-top:5em" method="post" onsubmit="return validate()" action=" /Home/SignUp">
+
+                <div class="col-sm-5 pull-right" style="font-size: 18px; border-color: #816f0c; font-family: Castellar;font-weight:bold">
+                    <br />
+                    <p style="font-size:larger">@ViewBag.Message</p><br />
+                    <h4 style="color: #6b36f2; border-color: #816f0c; font-family: Castellar; font-weight: bold">New Customer?</h4><br />
+                    <input type="text" style="width:270px" height="30" placeholder="First Name" name="fname" required /><br /><br />
+                    <input type="text" style="width:270px" height="30" placeholder="Last Name" name="lname" required /><br /><br />
+                    <input type="text" style="width:270px" height="30" placeholder="Email" name="email" id="a" required /><br /><br />
+                    <input type="password" style="width:270px" height="30" placeholder="Entre Password" name="password" required /><br /><br />
+                    <input type="password" style="width:270px" height="30" placeholder="Confirm Password" name="pass" required /><br /><br />
+                    <input type="number" style="width:270px" height="30" placeholder="Enter Street #" name="Street" required /><br /><br />
+                    <input type="text" style="width:270px" height="30" placeholder="Enter Town Name" name="Town" required /><br /><br />
+                    <input type="text" style="width:270px" height="30" placeholder="Enter City Name" name="City" required /><br /><br />
+                    <input type="text" style="width:270px" height="30" placeholder="Enter Country Name" name="Country" required /><br /><br />
+                    <input type="submit" value="Sign Up" style="background-color:#a4e9f6; font-family: Calibri; font-weight: bold; border-color:#106778" /><br />
+
+                </div>
+
+                <div class="img-responsive col-sm-6 pull-right">
+                    <img src=~/Content/themes/base/images/image17.jpg style="width:60%;padding-top:3em" /><br />
+
+                </div>
+
+            </form>
+
+            <script>
+
+                function validate() {
+                    var a = document.getElementById('1').value
+                    if (a.textContent) {
+
+                    }
+                    return false;
+                }
+
+            </script>
+
+
+        </div>
+    </div>
+</body>
+</html>

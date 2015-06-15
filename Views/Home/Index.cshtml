@@ -1,0 +1,394 @@
+﻿@using onlineBookStore.Models
+@model List<Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title></title>
+    @Scripts.Render("~/bundles/jquery")
+    
+    <link href="~/bootstrap.css" rel="stylesheet" />
+    <script src="~/bootstrap.js"></script>
+    <script src="~/Content/lib/jquery-1.10.1.min.js"></script>
+    @*<script src="~/Content/lib/jquery-1.9.0.min.js"></script>*@
+    <script src="~/Content/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script src="~/Content/source/jquery.fancybox.js"></script>
+    <script src="~/Content/source/jquery.fancybox.pack.js"></script>
+    
+
+    @{int i = 0;}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".fancybox")
+            .attr('rel', 'gallery')
+            .fancybox({
+                padding: 0
+            })
+        });
+
+        $(document).ready(function () {
+            $(".fancybox-thumb").fancybox({
+                prevEffect: 'none',
+                nextEffect: 'none',
+                helpers: {
+                    title: {
+                        type: 'outside'
+                    },
+                    thumbs: {
+                        width: 50,
+                        height: 50
+                    }
+                }
+            });
+        });
+    </script>
+            <style>
+
+            .products ul li {
+                float:left;
+                display: inline;
+                width: 230px;
+                height: 343px;
+                padding-left:2em
+
+            }
+
+            .products ul li a.info {
+                display: block;
+                padding: 7px;
+                width: 136px;
+                height: 329px;
+            }
+
+            .products ul li a.info:hover {
+                background: url(~/Content/images/product-hover.png) no-repeat 0 0;
+                text-decoration: none;
+            }
+
+            .products ul li .holder {
+                padding: 14px 9px;
+                border: solid 1px #dcdcdc;
+                display: block;
+            }
+
+            .products .product {
+                width: 150px;
+                margin-top: 7px;
+            }
+
+            .products img {
+                padding: 0 7px 4px;
+                width: 125px;
+                height: 160px;
+            }
+
+            .product .book-name {
+                font-size: 12px;
+                line-height: 20px;
+                color: #5f133f;
+                font-family: 'Georgia', Arial, serif;
+                display: block;
+            }
+
+            .product .author {
+                font-size: 11px;
+                line-height: 14px;
+                color: #3d3d3d;
+                font-family: 'Georgia', Arial, serif;
+                padding: 0 0 9px 1px;
+                display: block;
+            }
+
+            .product .description {
+                font-size: 11px;
+                line-height: 16px;
+                color: #878787;
+            }
+            </style>
+
+
+            </head>
+            <body id="body">
+
+                
+
+                <div class="container">
+
+                        <div class="row" style="background-color: #ffffff;padding-top:3em; padding-bottom: 5em">
+
+                            <form method="get" class="col-sm-4 pull-right">
+                                <div class="input-group">
+                                    <input style="border-color:#5f133f" type="text" name="na" id="a" class="form-control" placeholder="Book,Author,Price" />
+                                    <span class="input-group-btn">
+                                        <button type='button' name='search' style="border-color:#5f133f" id='search-btn' class="btn btn-flat"><i class="glyphicon glyphicon-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+
+            @if(ViewBag.dis!=1)
+                {
+                <div id="d3" class="categories col-sm-4">
+
+                <h4 style="color: #5f133f; font-family: Castellar;font-weight:bolder;border-bottom:inset;padding-top:2em">Select Required Standard</h4><br /><br />
+
+                <ul>
+                    <li>
+
+
+                        <h2 style="color: #5f133f; font-family: Castellar;font-weight:bolder">Categories</h2>
+
+                            <ul id="categorySelector" style="color: #5f133f; font-family:Calibri; font-weight: bold;margin-bottom:4em">
+                                @foreach (var u in ViewBag.cat)
+                                    {
+
+                                        <li class="list-group-item-heading" style="border-bottom:solid;font-size:20px">@Html.ActionLink((string) @u.name, "/BscCat", new {cat=u.name, cla=ViewBag.cla})</li>
+                                    }
+                            </ul>
+
+                    </li>
+                    <li style="display:inline;margin-left:2em">
+                        <img src="~/Content/themes/base/images/image18.jpg" alt="" />
+                    </li>
+                </ul>
+
+                </div>
+                    }
+
+           @if(ViewBag.dis!=1)
+               {
+                    <div id="d2" class="imag-responsive col-sm-8 pull-right" >
+                    <ul id="classSelector" class="nav nav-tabs" role="tablist">
+                        @if (ViewBag.cla.Equals("Top Most"))
+                        {<li class="active"><a href="/Home/Index">Top Most</a></li>}
+                        @*else {<li><a href="/Home/Index">Top Most</a></li> }*@                                                                                                   
+                        @if (ViewBag.cla.Equals("BSC")) {<li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}
+                        else { <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}
+                        @if (ViewBag.cla.Equals("BS(Hons)")) {<li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li>}
+                        else {<li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li> }
+                        @if (ViewBag.cla.Equals("M-Phill")) {<li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li>}
+                        else {<li><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li> }                                                                                                             
+                        @if (ViewBag.cla.Equals("Others")) {<li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+                        else { <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+                    </ul>
+                </div>
+
+
+               }
+
+                         
+
+
+            @if ( ViewBag.Top == 1)
+            {
+                <div id="d1" class="imag-responsive col-sm-5" >
+                        <ul id="classSelector" class="nav nav-tabs" role="tablist">
+
+                            @if (ViewBag.cat.Equals("Top Most"))
+                            {<li class="active"><a href="/Home/Index">Top Most</a></li>}
+                           
+                            @if (ViewBag.cat.Equals("BSC")){<li class="active"><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}else{   <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BSC">BSC</a></li>}
+                         
+                            @if (ViewBag.cat.Equals("BS(Hons)")){<li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li>}
+                            else { <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=BS(Hons)">BS(Hons)</a></li>}
+
+                            @if (ViewBag.cat.Equals("M-Phill")){<li><a class="active" href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li>}
+                            else { <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=M-Phill">M-Phil</a></li> }
+                            @if (ViewBag.cat.Equals("Others")){<li><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+                            else { <li><a href="/Home/BscCat?cat=@ViewBag.click&cla=Others">Others</a></li>}
+
+                        </ul>
+                    </div>
+                <br />
+                <br />
+               
+            }
+            @if ( ViewBag.Top == 1)
+            {
+
+                        <div id="d">
+
+                            <br />
+                            <br />
+                            <h1 style="padding-left:5em;color:#2e0a1f;font-family:Algerian">Top Most Books</h1>
+                            <hr />
+                        </div>
+            }
+
+            @if(ViewBag.dis!=1)
+              {
+                   <div id="mydiv2" class="col-sm-8 pull-right" style="padding-top:2em">
+                          <div class="products">
+                              <ul>
+            @foreach (var c in Model)
+            {
+                   <li style="margin-top:4em">
+                    <div class="product">
+                        <div class="info">
+                            <span class="holder">
+
+
+            @{string s = c.bookId + "0.jpg";
+
+
+    <a rel="@i" class="fancybox-thumb" href="~/Files/@s" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice"><img src="~/Files/@s" alt="" class="thumbnail" /></a>
+
+                <div class=" col-sm-6  hidden" >
+                    @{string url = "~/Files/" + c.bookId + "1" + ".jpg"; }
+                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                        <img src="@Url.Content(url)" alt="" />
+                    </a>
+                    @{  url = "~/Files/" + c.bookId + "2" + ".jpg"; }
+                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                        <img src="@Url.Content(url)" alt="" />
+                    </a>
+                    @{  url = "~/Files/" + c.bookId + "3" + ".jpg"; }
+                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                        <img src="@Url.Content(url)" alt="" />
+                    </a>
+                    @{  url = "~/Files/" + c.bookId + "4" + ".jpg"; }
+                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                        <img src="@Url.Content(url)" alt="" />
+                    </a>
+                </div>
+            }
+            <span class="book-name">@c.name</span>
+            <span class="book-name">By: @c.Author</span>
+            <span class="book-name">Rs. @c.unitPrice</span>
+
+            <span class="book-name">
+            @Html.ActionLink("SeeMore", "/BookDetails",c, FormMethod.Post)
+            </span>
+        </span>
+        <span class="glyphicon glyphicon-shopping-cart thumbnail">
+            @Html.ActionLink("AddToCart", "/CartDetails", c, FormMethod.Post)
+        </span>
+    </div>
+
+</div>
+</li>
+
+
+                                }
+
+</ul>
+</div>
+
+</div>
+                }
+
+<div id="mydiv">
+    @if(ViewBag.dis==1)
+                    {
+                        <div class="col-sm-11" style="padding-top:5em; padding-left:6em">
+            <div class="products">
+                <ul>
+            @foreach (var c in Model)
+            {
+                                        <li>
+                            <div class="product">
+                                <div class="info">
+                                    <span class="holder">
+            @{string s = @c.bookId + "0.jpg";
+            }
+
+           
+            <a class="fancybox-thumb" href="~/Files/@s"> <img src="~/Files/@s" alt="" class="thumbnail" /></a>
+            <span class="book-name">@c.name</span>
+            <span class="book-name">By: @c.Author</span>
+            <span class="book-name">Rs. @c.unitPrice</span>
+            <span class="book-name">
+            @Html.ActionLink("SeeMore", "/BookDetails", c, FormMethod.Post)
+            </span>
+        </span>
+        <span class="glyphicon glyphicon-shopping-cart thumbnail">
+            @Html.ActionLink("AddToCart", "/CartDetails", c, FormMethod.Post)
+        </span>
+        <br /><br />
+    </div>
+
+</div>
+</li>
+
+
+                                    }
+
+</ul>
+</div>
+
+</div>
+                    }
+</div>
+</div>
+</div>
+
+          
+<script>
+
+$(document).ready(function(){
+
+    $("#search-btn").click(
+function()
+{
+    //var type = $("#searchType").text();
+    //var text = $("#searchText").val();
+    //var min = $("#min_val").val();
+
+    var max = $("#a").val();
+    $("#d3").empty();
+    $("d1").show();
+    $('#d').hide();
+    $("#mydiv2").empty();
+
+    $.post("/Home/Search", { n:max },
+        function (data) {
+            //alert(data);
+            
+            $("#mydiv").empty().append(data);
+        });
+})
+});
+
+
+    </script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('.nav-tabs > li > a').click(function(event){
+                
+                //alert("In");
+                //get displaying tab content jQuery selector
+                var active_tab_selector = $('.nav-tabs > li.active > a').attr('href');
+
+                //find actived navigation and remove 'active' css
+                var actived_nav = $('.nav-tabs > li.active');
+                actived_nav.removeClass('active');
+
+                //add 'active' css into clicked navigation
+                $(this).parents('li').addClass('active');
+                
+                //hide displaying tab content
+                $(active_tab_selector).removeClass('active');
+                $(active_tab_selector).addClass('hide');
+
+                //show target tab content
+                var target_tab_selector = $(this).attr('href');
+                $(target_tab_selector).removeClass('hide');
+                $(target_tab_selector).addClass('active');
+              
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>
