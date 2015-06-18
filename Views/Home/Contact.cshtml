@@ -29,7 +29,7 @@
                                 <br />
                                 <br />
 
-                                <input class="btn btn-default"  type="submit" value="Submit" style=" font-weight: bold; border-color: #816f0c; background-color: #f8eca6" />
+                                <input class="btn btn-default" id="btn"  type="submit" value="Submit" style=" font-weight: bold; border-color: #816f0c; background-color: #f8eca6" />
                             </div>
                         </form> 
                     </fieldset>
@@ -44,5 +44,18 @@
 
         </div>
     </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#btn").click(
+        function () {
+            alert("Message Send Successfully...!");
+        })
+        });
+
+
+    </script>
 </body>
 </html>
