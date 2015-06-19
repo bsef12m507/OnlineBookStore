@@ -22,7 +22,7 @@
     <script src="~/Content/source/jquery.fancybox.pack.js"></script>
     
 
-    @{int i = 0;}
+    @{int i = 0; int j = 0;}
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -256,7 +256,11 @@
                     <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
                         <img src="@Url.Content(url)" alt="" />
                     </a>
+
+                    @{i++;}
+                   
                 </div>
+                
             }
             <span class="book-name">@c.name</span>
             <span class="book-name">By: @c.Author</span>
@@ -297,25 +301,28 @@
                                     <span class="holder">
             @{string s = @c.bookId + "0.jpg";
 
-                <a rel="@i" class="fancybox-thumb" href="~/Files/@s" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice"> <img src="~/Files/@s" alt="" class="thumbnail" /></a>
+                <a rel="@j"  class="fancybox-thumb" href="~/Files/@s" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice"> <img src="~/Files/@s" alt="" class="thumbnail" /></a>
                 
                 <div class=" col-sm-6  hidden" >
                     @{string url = "~/Files/" + c.bookId + "1" + ".jpg"; }
-                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                    <a class="fancybox-thumb" rel="@j" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
                         <img src="@Url.Content(url)" alt="" />
                     </a>
                     @{  url = "~/Files/" + c.bookId + "2" + ".jpg"; }
-                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                    <a class="fancybox-thumb" rel="@j" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
                         <img src="@Url.Content(url)" alt="" />
                     </a>
                     @{  url = "~/Files/" + c.bookId + "3" + ".jpg"; }
-                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                    <a class="fancybox-thumb" rel="@j" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
                         <img src="@Url.Content(url)" alt="" />
                     </a>
                     @{  url = "~/Files/" + c.bookId + "4" + ".jpg"; }
-                    <a class="fancybox-thumb" rel="@i" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
+                    <a class="fancybox-thumb" rel="@j" href="@Url.Content(url)" title="Name:@c.name       By:@c.Author         Price:@c.unitPrice">
                         <img src="@Url.Content(url)" alt="" />
                     </a>
+
+                    @{j++;}
+                   
                 </div>
 
             }
